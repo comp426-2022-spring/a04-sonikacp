@@ -107,6 +107,9 @@ function countFlips(array) {
 const express = require('express')
 const app = express()
 
+// 
+const db = require('./database.js')
+
 // Require minimist module and create port
 const args = require('minimist')(process.argv.slice(2))
 args['port']
