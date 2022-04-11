@@ -225,13 +225,20 @@ app.use(function(req, res){
     res.type("text/plain")
 });
 
-// Create a new endpoint /app/log/access that returns all records in the accesslog table in your database log.db
-// app.get('/app/flip/call/tails', (req, res) => {
-//   res.status(200).json(flipACoin('tails'));
-// });
+if (args.debug == true) {
+    // Create a new endpoint /app/log/access that returns all records in the accesslog table in your database log.db
+    app.get("/app/log/access", (req, res) => {
+      try {
+          const stmt = db.prepare('SELECT * FROM accesslogs').all()
+          res.status(HTTP_STATUS_OK).json(stmt)
+      } catch {
+          console.error(e)
+      }
+    });
 
-// Create an endpoint /app/error that returns an error in the response
-// app.use(function(req, res){
-//   res.status(404).send('Error test successful')
-//   res.type("text/plain")
-// });
+    // Create an endpoint /app/error that returns an error in the response
+    app.get('/app/error', (req, res) => {
+        throw new Error('Error test completed successfully.')
+    })
+}
+
