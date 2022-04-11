@@ -158,6 +158,33 @@ if (args.log == true) {
     app.use(morgan('combined', { stream: accessLog }))
 }
 
+app.use((req, res, next) => {
+  let logdata = {
+    remoteaddr: req.ip,
+    remoteuser: req.user,
+    time: Date.now(),
+    method: req.method,
+    url: req.url,
+    protocol: req.protocol,
+    httpversion: req.httpVersion,
+    status: res.statusCode,
+    referer: req.headers['referer'],
+    useragent: req.headers['user-agent']
+}
+
+// middleware
+  const stmt = db.prepare(`INSERT INTO accesslogs (remoteaddr, remoteuser, time, 
+    method, url, protocol, httpversion, secure, status, referer, useragent) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`)
+
+  const info = stmt.run(logdata.remoteaddr, logdata.remoteuser, logdata.time,
+    logdata.method, logdata.url, logdata.protocol,
+    logdata.httpversion, logdata.secure, logdata.status,
+    logdata.referer, logdata.useragent)
+  next()
+})
+
+// **endpoints** //
 
 app.get('/app/', (req, res) => {
   // Respond with status 200
@@ -208,9 +235,3 @@ app.use(function(req, res){
 //   res.status(404).send('Error test successful')
 //   res.type("text/plain")
 // });
-
-// Use morgan for logging to files
-// Create a write stream to append (flags: 'a') to a file
-const WRITESTREAM = fs.createWriteStream('FILE', { flags: 'a' })
-// Set up the access logging middleware
-app.use(morgan('FORMAT', { stream: WRITESTREAM }))
