@@ -125,7 +125,7 @@ const port = args.port || process.env.PORT || 5555;
 // const help = args.help
 // const debug = args.debug
 // const log = args.log
-// var HTTP_PORT = args.port;
+
 
 // print help message if command line is help
 if (args.help == true) {
