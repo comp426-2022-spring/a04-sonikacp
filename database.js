@@ -5,7 +5,7 @@ const Database = require('better-sqlite3')
 // create database in log.db
 const db = new Database('log.db')
 
-const stmt = db.prepare(`SELECT name FROM sqlite_master WHERE type='table' and name='accesslogs';`);
+const stmt = db.prepare(`SELECT name FROM sqlite_master WHERE type='table' and name='accesslog';`);
 let row = stmt.get();
 
 // check if table exists
