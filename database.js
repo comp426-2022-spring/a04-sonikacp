@@ -14,7 +14,7 @@ if (row === undefined) {
 
     // contains commands to initialize database
     const sqlInit = 
-    `CREATE TABLE accesslog (
+    ` CREATE TABLE accesslog (
         id INTEGER PRIMARY KEY,
         remoteaddr TEXT,
         remoteuser TEXT,
