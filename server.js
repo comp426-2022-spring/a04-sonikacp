@@ -118,13 +118,7 @@ app.use(express.json());
 // Require minimist module and create port
 const args = require('minimist')(process.argv.slice(2))
 args['port', 'debug', 'log', 'help']
-// if (args.port == undefined) {
-//   args.port = 5000
-// }
 const port = args.port || process.env.PORT || 5555;
-// const help = args.help
-// const debug = args.debug
-// const log = args.log
 
 
 // print help message if command line is help
