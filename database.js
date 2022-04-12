@@ -5,7 +5,7 @@ const Database = require('better-sqlite3')
 // create database in log.db
 const db = new Database('log.db')
 
-const stmt = db.prepare(`SELECT name FROM sqlite_master WHERE type='table' and name='accesslog';`);
+const stmt = db.prepare(`SELECT name FROM sqlite_master WHERE type='table' and name='accesslogs';`);
 let row = stmt.get();
 
 // check if table exists
@@ -16,17 +16,17 @@ if (row === undefined) {
     const sqlInit = 
     `CREATE TABLE accesslog (
         id INTEGER PRIMARY KEY,
-        remote_addr VARCHAR,
-        remote_user VARCHAR,
+        remoteaddr VARCHAR,
+        remoteuser VARCHAR,
         time VARCHAR, 
         method VARCHAR,
         url VARCHAR,
         protocol VARCHAR,
-        http_version NUMERIC,
+        http_ersion NUMERIC,
         secure INTEGER,
         status INTEGER,
         referer VARCHAR,
-        user_agent VARCHAR
+        useragent VARCHAR
     );`
     // execute commands
     db.exec(sqlInit);
