@@ -230,7 +230,7 @@ if (args.debug == true) {
     app.get("/app/log/access", (req, res) => {
       try {
           const stmt = db.prepare('SELECT * FROM accesslogs').all()
-          res.status(HTTP_STATUS_OK).json(stmt)
+          res.status(200).json(stmt)
       } catch {
           console.error(e)
       }
