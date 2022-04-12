@@ -222,12 +222,6 @@ app.get('/app/flip/call/tails', (req, res) => {
     res.status(200).json(flipACoin('tails'));
 });
 
-// ALL endpoints should return HTTP headers including a status code and the appropriate content type for the response.
-app.use(function(req, res){
-    res.status(404).send('404 NOT FOUND')
-    res.type("text/plain")
-});
-
 if (args.debug == true) {
     // Create a new endpoint /app/log/access that returns all records in the accesslog table in your database log.db
     app.get("/app/log/access", (req, res) => {
@@ -245,6 +239,12 @@ if (args.debug == true) {
         throw new Error('Error test completed successfully.')
     });
 }
+
+// ALL endpoints should return HTTP headers including a status code and the appropriate content type for the response.
+app.use(function(req, res){
+  res.status(404).send('404 NOT FOUND')
+  res.type("text/plain")
+});
 
 process.on('SIGTERM', () => {
   server.close(() => {
