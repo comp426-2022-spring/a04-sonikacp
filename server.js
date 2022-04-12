@@ -139,7 +139,7 @@ if (args.help == true) {
                 an error with the message "Error test successful." Defaults to 
                 false.
     
-    --log		If set to false, no log files are written. Defaults to true.
+    --log	If set to false, no log files are written. Defaults to true.
                 Logs are always written to database.
     
     --help	Return this message and exit.`
