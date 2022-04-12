@@ -8,8 +8,8 @@ const db = new Database('log.db')
 const stmt = db.prepare(`SELECT name FROM sqlite_master WHERE type='table' and name='accesslogs';`);
 let row = stmt.get();
 
-// check if table does exists
-if (row == undefined) {
+// check if table exists
+if (row === undefined) {
     console.log('Log database appears to be empty. Log database is being created now...')
 
     // contains commands to initialize database
@@ -30,6 +30,7 @@ if (row == undefined) {
     );`
     // execute commands
     db.exec(sqlInit);
+    console.log('New table in database')
 
 // if database exists, log that
 } else {
