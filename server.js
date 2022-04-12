@@ -232,7 +232,7 @@ if (args.debug == true) {
     // Create a new endpoint /app/log/access that returns all records in the accesslog table in your database log.db
     app.get("/app/log/access", (req, res) => {
       try {
-          const stmt = db.prepare('SELECT * FROM accesslogs').all()
+          const stmt = db.prepare('SELECT * FROM accesslog').all()
           res.status(200).json(stmt)
       } catch {
           console.error(e)
