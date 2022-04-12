@@ -176,7 +176,7 @@ app.use((req, res, next) => {
 }
 
 // middleware
-  const stmt = db.prepare(`INSERT INTO accesslogs (remoteaddr, remoteuser, time, 
+  const stmt = db.prepare(`INSERT INTO accesslog (remoteaddr, remoteuser, time, 
     method, url, protocol, httpversion, secure, status, referer, useragent) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`)
 
