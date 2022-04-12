@@ -22,7 +22,7 @@ if (row === undefined) {
         method VARCHAR,
         url VARCHAR,
         protocol VARCHAR,
-        http_ersion NUMERIC,
+        httpversion NUMERIC,
         secure INTEGER,
         status INTEGER,
         referer VARCHAR,
