@@ -238,7 +238,8 @@ if (args.debug == true) {
 
     // Create an endpoint /app/error that returns an error in the response
     app.get('/app/error', (req, res) => {
+        res.status(500);
         throw new Error('Error test completed successfully.')
-    })
+    });
 }
 
